@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class JeuDeTestJdBc {
 
-	//lkjgjh
+	//lhuifieru
 			  public final static String[] QUERIES = {
 			            "alter table Cours drop constraint FKekqdly915eghj1mg00at20fvi",
 			            "alter table Cours drop constraint FKjqljrhsw7w5ink90h11k164hl",
