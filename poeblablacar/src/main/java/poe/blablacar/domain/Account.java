@@ -1,23 +1,46 @@
-package domain;
+package poe.blablacar.domain;
 
+
+
+
+import java.util.Collection;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
 public class Account {
 	
-	private long id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	@NotBlank
 	private String password;
+	@NotBlank
 	private String firstName;
+	@NotBlank
 	private String lastName;
-	private String birthDate;
+	@Temporal(TemporalType.DATE)
+	private Date birthDate;
+	@NotBlank
 	private String email;
 	private String rating ;
 	private boolean confirmed;
 	
+	@OneToMany(mappedBy="driver")
+	private Collection<Ride> proposedRides;
 	
 	
 	
-	
-	
-	
-	public Account(long id, String password, String firstName, String lastName, String birthDate, String email,
+	public Account( String password, String firstName, String lastName, Date birthDate, String email,
 			String rating, boolean confirmed) {
 		this.password = password;
 		this.firstName = firstName;
@@ -32,10 +55,10 @@ public class Account {
 		
 	}
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getPassword() {
@@ -56,10 +79,10 @@ public class Account {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getEmail() {
