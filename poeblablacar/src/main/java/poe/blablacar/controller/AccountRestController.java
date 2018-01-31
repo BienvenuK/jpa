@@ -60,7 +60,10 @@ public class AccountRestController {
 		return accountService.get(id);
 	}
 	
-	
+	@PostMapping("/{idAccount}/{idRide}")
+	public void addRide(@PathVariable("idAccount" ) Long idAccount , @PathVariable("idRide") Long idRide) {
+		accountService.addRide(idRide, idAccount);
+	}
 	
 	
 	

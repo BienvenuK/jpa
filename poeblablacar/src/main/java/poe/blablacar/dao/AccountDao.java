@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import poe.blablacar.domain.Account;
+import poe.blablacar.domain.Ride;
 
 
 
@@ -14,6 +15,7 @@ import poe.blablacar.domain.Account;
 public interface AccountDao extends CrudRepository<Account, Long> {
 	
 	public Account  findAllByEmail(String email);
+	
 
 
 	

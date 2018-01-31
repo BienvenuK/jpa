@@ -3,6 +3,7 @@ package poe.blablacar.domain;
 
 
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class Account {
+public class Account implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -40,6 +41,14 @@ public class Account {
 	
 	
 	
+	public Collection<Ride> getProposedRides() {
+		return proposedRides;
+	}
+
+	public void setProposedRides(Collection<Ride> proposedRides) {
+		this.proposedRides = proposedRides;
+	}
+
 	public Account( String password, String firstName, String lastName, Date birthDate, String email,
 			String rating, boolean confirmed) {
 		this.password = password;
