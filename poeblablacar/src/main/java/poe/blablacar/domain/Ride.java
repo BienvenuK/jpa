@@ -40,9 +40,7 @@ public class Ride implements Serializable{
 	List<Date>arrivalDates = new ArrayList<Date>();
 	int totalPlaces;
 	int leftPlaces;
-	public Account getDriver() {
-		return driver;
-	}
+	
 
 	
 
@@ -51,7 +49,9 @@ public class Ride implements Serializable{
 
 	public Ride() {
 	}
-	
+	public Account getDriver() {
+		return driver;
+	}
 	public Long getId() {
 		return id;
 	}
