@@ -40,10 +40,9 @@ public class Ride implements Serializable{
 	List<Date>arrivalDates = new ArrayList<Date>();
 	int totalPlaces;
 	int leftPlaces;
-	
-
-	
-
+	@Column
+	@ElementCollection(targetClass=String.class)
+	List<Booking>booking = new ArrayList<Booking>();
 	@ManyToOne
 	Account driver;
 

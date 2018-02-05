@@ -4,9 +4,13 @@ package poe.blablacar.domain;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +43,12 @@ public class Account implements Serializable{
 	@OneToMany(mappedBy="driver")
 	private Collection<Ride> proposedRides;
 	
+	@Column
+	@ElementCollection(targetClass=String.class)
+	List<Booking>bookings = new ArrayList<Booking>();
+	
+	
+	
 	
 	
 	public Collection<Ride> getProposedRides() {
@@ -58,6 +68,7 @@ public class Account implements Serializable{
 		this.email = email;
 		this.rating = rating;
 		this.confirmed = confirmed;
+		//srg
 	}
 	
 	public Account() {

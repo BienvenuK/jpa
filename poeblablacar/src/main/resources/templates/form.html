@@ -1,0 +1,50 @@
+<html>
+    <body>
+        <form action="#" th:action="@{/}" th:object="${accountCreateForm}" method="post">
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" th:field="*{email}" /></td>
+                    
+                    
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</td>
+                </tr>
+                <tr>
+                    <td>Mot de passe:</td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</td>
+                </tr>
+                  <tr>
+                    <td>Nom:</td>
+                    <td><input type="text" th:field="*{firstName}" /></td>
+                    
+                    
+                    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">email Error</td>
+                </tr>
+                <tr>
+                    <td>Prenom:</td>
+                    <td><input type="text" th:field="*{lastName}" /></td>
+                    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">password Error</td>
+                </tr>
+                  <tr>
+                    <td>Date de naissance:</td>
+                    <td><input type="date" th:field="*{birthDate}" /></td>
+                    <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">email Error</td>
+                </tr>
+                <tr>
+                    <td>Rating :</td>
+                    <td><input type="text" th:field="*{rating}" /></td>
+                    <td th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">password Error</td>confirmed
+                </tr>
+                 <tr>
+                    <td>Confirmer:</td>
+                    <td><input type="checkbox" th:field="*{confirmed}" /></td>
+                    <td th:if="${#fields.hasErrors('confirmed')}" th:errors="*{confirmed}">password Error</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
