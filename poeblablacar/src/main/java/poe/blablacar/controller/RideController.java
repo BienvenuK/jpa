@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +64,7 @@ public class RideController extends WebMvcConfigurerAdapter{
 	        
 	        rideService.offerARide(convertedDateMinutePrecision, rideCreateForm.getCaracteristic(), rideCreateForm.getTotalPlaces(), rideCreateForm.getLeftPlaces(), rideCreateForm.getLieuDepart(), rideCreateForm.getLieuArrive(), rideCreateForm.getPrice(), rideCreateForm.getAccountId());
 	      
-	        model.addAttribute("message", "Votre trajet a bien été pris en compte.");
+	        Model.addAttribute("message", "Votre trajet a bien été pris en compte.");
 	        return "offerARide";
 	    }
 	    
