@@ -31,7 +31,6 @@ public class AccountCreateFormBean extends WebMvcConfigurerAdapter{
 	        registry.addViewController("/results").setViewName("results");
 	    }
 	 
-
 	    @GetMapping("/")
 	    public String showForm(AccountCreateForm accountCreateForm) {
 	        return "form";
@@ -43,14 +42,9 @@ public class AccountCreateFormBean extends WebMvcConfigurerAdapter{
 	        if (bindingResult.hasErrors()) {
 	            return "form";
 	        }
-	        
-	       
-	      
 	        Account account = new Account();
 	        DateFormat   formatter = new SimpleDateFormat("yyyy-MM-dd");
 	      Date date = new Date();
-	      
-	      //ljkgfsqu
 		try {
 			date = formatter.parse(accountCreateForm.getBirthDate());
 		} catch (ParseException e) {
@@ -58,7 +52,6 @@ public class AccountCreateFormBean extends WebMvcConfigurerAdapter{
 			e.printStackTrace();
 		}
 	       account.setBirthDate(date);
-	       
 	       account.setConfirmed(accountCreateForm.isConfirmed());
 	       account.setEmail(accountCreateForm.getEmail());
 	       account.setPassword(accountCreateForm.getPassword());

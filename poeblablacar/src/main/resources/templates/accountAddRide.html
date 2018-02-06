@@ -1,0 +1,56 @@
+<html>
+    <body>
+        <form action="#" th:action="@{/}" th:object="${rideCreateForm}" method="post">
+            <table>
+                <tr>
+                    <td>Depart :</td>
+                    <td><input type="text" th:field="*{ride.lieuDepart}" /></td>
+                    
+                    
+                    <td th:if="${#fields.hasErrors('lieuDepart')}" th:errors="*{lieuDepart}">email Error</td>
+                </tr>
+                
+                 <tr>
+                    <td>Arrive :</td>
+                    <td><input type="text" th:field="*{ride.lieuArrive}" /></td>
+                    
+                    
+                    <td th:if="${#fields.hasErrors('lieuArrive')}" th:errors="*{lieuArrive}">email Error</td>
+                </tr>
+                <tr>
+                    <td>Jour de depart</td>
+                    <td><input type="password" th:field="*{jourDepart}" /></td>
+                    <td th:if="${#fields.hasErrors('jourDepart')}" th:errors="jourDepart">password Error</td>
+                </tr>
+                
+                <tr>
+                    <td>Heure  depart</td>
+                    <td><input type="text" th:field="*{heureDepart}" /></td>
+                    <td th:if="${#fields.hasErrors('heureDepart')}" th:errors="*{heureDepart}">password Error</td>
+                </tr>
+                
+               
+                 
+                <tr>
+                    <td>Minute depart</td>
+                    <td><input type="text" th:field="*{minuteDepart}" /></td>
+                    <td th:if="${#fields.hasErrors('minuteDepart')}" th:errors="minuteDepart">password Error</td>
+                </tr>
+                
+                 <tr>
+                    <td>Minute Arrive</td>
+                    <td><input type="text" th:field="*{price}" /></td>
+                    <td th:if="${#fields.hasErrors('price')}" th:errors="price">password Error</td>
+                </tr>
+                  <tr>
+                    <td>Account </td>
+                    <td><input type="number" th:field="*{price}" /></td>
+                    <td th:if="${#fields.hasErrors('price')}" th:errors="price">password Error</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

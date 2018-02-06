@@ -11,11 +11,11 @@ import javax.persistence.TemporalType;
 
 public class RideDto {
 	private Date startDate;
-	List<String>locations = new ArrayList<String>();
-	List<String>caracteristics = new ArrayList<String>();
-	List<Date>arrivalDates = new ArrayList<Date>();
-	int totalPlaces;
-	int leftPlaces;
+	private String location;
+	private String caracteristic;
+	private Date arrivalDate ;
+	private int totalPlaces;
+	private int leftPlaces;
 	
 	
 	
@@ -26,23 +26,24 @@ public class RideDto {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public List<String> getLocations() {
-		return locations;
+	
+	public String getLocation() {
+		return location;
 	}
-	public void setLocations(List<String> locations) {
-		this.locations = locations;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-	public List<String> getCaracteristics() {
-		return caracteristics;
+	public String getCaracteristic() {
+		return caracteristic;
 	}
-	public void setCaracteristics(List<String> caracteristics) {
-		this.caracteristics = caracteristics;
+	public void setCaracteristic(String caracteristic) {
+		this.caracteristic = caracteristic;
 	}
-	public List<Date> getArrivalDates() {
-		return arrivalDates;
+	public Date getArrivalDate() {
+		return arrivalDate;
 	}
-	public void setArrivalDates(List<Date> arrivalDates) {
-		this.arrivalDates = arrivalDates;
+	public void setArrivalDate(Date arrivalDate) {
+		this.arrivalDate = arrivalDate;
 	}
 	public int getTotalPlaces() {
 		return totalPlaces;

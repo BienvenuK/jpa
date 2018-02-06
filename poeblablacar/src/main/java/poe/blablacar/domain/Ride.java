@@ -13,8 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 
@@ -25,27 +28,53 @@ public class Ride implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	//depart - etapes-fin lieu
-	@Column
-	@ElementCollection(targetClass=String.class)
-	List<String>locations = new ArrayList<String>();
-	@Column
-	@ElementCollection(targetClass=String.class)
-	List<String>caracteristics = new ArrayList<String>();
-	@Temporal(TemporalType.DATE)
-	@Column
-	@ElementCollection(targetClass=Date.class)
-	List<Date>arrivalDates = new ArrayList<Date>();
+	String caracteristic;
+	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	    @Temporal(TemporalType.TIMESTAMP)
+	private Date arrivalDate;
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
 	int totalPlaces;
 	int leftPlaces;
-	@Column
-	@ElementCollection(targetClass=String.class)
-	List<Booking>booking = new ArrayList<Booking>();
 	@ManyToOne
 	Account driver;
+	 @OneToMany(mappedBy = "ride")
+	    private List<Booking> bookings;
+	 
+	 private String lieuDepart;
+	 private String lieuArrive;
+	 private Double price;
+	
+	
+	
 
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public String getLieuDepart() {
+		return lieuDepart;
+	}
+	public void setLieuDepart(String lieuDepart) {
+		this.lieuDepart = lieuDepart;
+	}
+	public String getLieuArrive() {
+		return lieuArrive;
+	}
+	public void setLieuArrive(String lieuArrive) {
+		this.lieuArrive = lieuArrive;
+	}
 	public Ride() {
 	}
 	public Account getDriver() {
@@ -83,36 +112,24 @@ public class Ride implements Serializable{
 	public void setLeftPlaces(int leftPlaces) {
 		this.leftPlaces = leftPlaces;
 	}
-	
-	public List<String> getCaracteristics() {
-		return caracteristics;
+	public String getCaracteristic() {
+		return caracteristic;
 	}
-	
-	public void setCaracteristics(String caracteristic) {
-		this.caracteristics.add(caracteristic);
+	public void setCaracteristic(String caracteristic) {
+		this.caracteristic = caracteristic;
 	}
-	
-	public List<Date> getArrivalDates() {
-		return arrivalDates;
+	public Date getArrivalDate() {
+		return arrivalDate;
 	}
-	
-	public void setArrivalDates(Date arrivalDate) {
-		this.arrivalDates.add(arrivalDate) ;
+	public void setArrivalDate(Date arrivalDate) {
+		this.arrivalDate = arrivalDate;
 	}
-	
-	public List<String> getLocations() {
-		return locations;
-	}
-	
-	public void setLocations(String location) {
-		this.locations.add(location);
-	}
-
 	public void setDriver(Account driver) {
 		this.driver = driver;
 	}
-
-
+	
+	
+	
 	
 	
 

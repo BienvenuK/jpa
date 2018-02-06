@@ -32,9 +32,8 @@ public class AccountDto {
 		for (Ride ride : account.getProposedRides()) {
 			RideDto rideDto = new RideDto();
 			rideDto.setStartDate(ride.getStartDate());
-			rideDto.setLocations(ride.getLocations());
-			rideDto.setCaracteristics(ride.getCaracteristics());
-			rideDto.setArrivalDates(ride.getArrivalDates());
+			rideDto.setCaracteristic(ride.getCaracteristic());
+			rideDto.setArrivalDate(ride.getArrivalDate());
 			rideDto.setTotalPlaces(ride.getTotalPlaces());
 			rideDto.setLeftPlaces(ride.getLeftPlaces());;
 
@@ -43,6 +42,10 @@ public class AccountDto {
 		accountDto.setProposedRides(rides);
 		return accountDto;
 	}
+	
+	
+	
+	
 
 
 	public String getPassword() {

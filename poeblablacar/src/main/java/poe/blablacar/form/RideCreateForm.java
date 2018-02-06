@@ -1,49 +1,45 @@
 package poe.blablacar.form;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+
+
+import poe.blablacar.domain.Account;
+import poe.blablacar.domain.Ride;
 
 public class RideCreateForm {
-	
-	
-	private String startDate;
-	String location;
-	String caracteristic ;
-	List<String>arrivalDates = new ArrayList<String>();
+	private Long accountId;
+	public Long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+	public Ride getRide() {
+		return ride;
+	}
 	int totalPlaces;
 	int leftPlaces;
+	private String lieuArrive;
+	  private String lieuDepart;
+	  
+	  private String jourDepart;
+	  private String jourArrive;
+	  
+	  private int heureDepart;
+	  private int heureArrive;
+	  
+	  private int minuteD;
+	  private int minuteA;
+	  private Double price;
+	 private String caracteristic;
 	
-	
-	
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	public String getCaracteristic() {
+	  
+	 public String getCaracteristic() {
 		return caracteristic;
 	}
 	public void setCaracteristic(String caracteristic) {
 		this.caracteristic = caracteristic;
-	}
-	public List<String> getArrivalDates() {
-		return arrivalDates;
-	}
-	public void setArrivalDates(String arrivalDate) {
-		this.arrivalDates.add(arrivalDate);
 	}
 	public int getTotalPlaces() {
 		return totalPlaces;
@@ -57,8 +53,69 @@ public class RideCreateForm {
 	public void setLeftPlaces(int leftPlaces) {
 		this.leftPlaces = leftPlaces;
 	}
+	private Ride ride;
+	
+	 public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	public void setRide(Ride ride) {
+		this.ride = ride;
+	}
 	
 	
+	public String getLieuArrive() {
+		return lieuArrive;
+	}
+	public void setLieuArrive(String lieuArrive) {
+		this.lieuArrive = lieuArrive;
+	}
+	public String getLieuDepart() {
+		return lieuDepart;
+	}
+	public void setLieuDepart(String lieuDepart) {
+		this.lieuDepart = lieuDepart;
+	}
+	public String getJourDepart() {
+		return jourDepart;
+	}
+	public void setJourDepart(String jourDepart) {
+		this.jourDepart = jourDepart;
+	}
+	public String getJourArrive() {
+		return jourArrive;
+	}
+	public void setJourArrive(String jourArrive) {
+		this.jourArrive = jourArrive;
+	}
+	public int getHeureDepart() {
+		return heureDepart;
+	}
+	public void setHeureDepart(int heureDepart) {
+		this.heureDepart = heureDepart;
+	}
+	public int getHeureArrive() {
+		return heureArrive;
+	}
+	public void setHeureArrive(int heureArrive) {
+		this.heureArrive = heureArrive;
+	}
+
+	public int getMinuteD() {
+		return minuteD;
+	}
+	public void setMinuteD(int minuteD) {
+		this.minuteD = minuteD;
+	}
+	public int getMinuteA() {
+		return minuteA;
+	}
+	public void setMinuteA(int minuteA) {
+		this.minuteA = minuteA;
+	}
 	
 
 }

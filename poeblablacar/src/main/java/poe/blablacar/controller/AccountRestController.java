@@ -1,5 +1,8 @@
 package poe.blablacar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+
+
 import poe.blablacar.Service.AccountService;
+import poe.blablacar.dao.AccountDao;
 import poe.blablacar.domain.Account;
 import poe.blablacar.dto.AccountDto;
+
 
 
 
@@ -51,8 +59,20 @@ public class AccountRestController {
 	}
 	
 	@GetMapping("/accounts")
-	public Iterable<Account> accounts(){
-		return accountService.accounts();
+	public Iterable<AccountDto> accounts(){
+		
+		List<AccountDto> accounts = new ArrayList<>();
+		
+		
+		for (Account account : accountService.accounts()) {
+			
+			AccountDto accountDto = AccountDto.buildFrom(account);
+			accounts.add(accountDto);
+			 
+			
+		}
+		return accounts;
+	
 	}
 	
 	

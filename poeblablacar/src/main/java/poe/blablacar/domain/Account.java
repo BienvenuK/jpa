@@ -44,13 +44,21 @@ public class Account implements Serializable{
 	private Collection<Ride> proposedRides;
 	
 	@Column
-	@ElementCollection(targetClass=String.class)
+	@OneToMany
 	List<Booking>bookings = new ArrayList<Booking>();
 	
 	
 	
 	
 	
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
 	public Collection<Ride> getProposedRides() {
 		return proposedRides;
 	}
