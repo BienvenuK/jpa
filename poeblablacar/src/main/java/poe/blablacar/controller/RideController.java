@@ -78,7 +78,8 @@ public class RideController extends WebMvcConfigurerAdapter{
 	        
 	       Ride ride = rideService.offerARide(convertedDateMinutePrecision, rideCreateForm.getCaracteristic(), rideCreateForm.getTotalPlaces(), rideCreateForm.getLeftPlaces(), rideCreateForm.getLieuDepart(), rideCreateForm.getLieuArrive(), rideCreateForm.getPrice(), rideCreateForm.getAccountId());
 	      
-	      //  Model.ad
+	    System.out.println(rideCreateForm.getLieuArrive());
+	    
 	        redirectAttributes.addAttribute("ride", ride.getId());
 	        return "redirect:/ride";
 	    }
@@ -87,8 +88,6 @@ public class RideController extends WebMvcConfigurerAdapter{
 	    @GetMapping("/list")
 	    public String list(Model model) {
 	       Iterable<Ride>  rides = rideService.rides();
-	       
-	       System.out.println("je suis ");
 
 	        model.addAttribute("rides", rides);
 	        return "ride/list";
