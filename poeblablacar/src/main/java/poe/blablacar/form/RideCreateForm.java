@@ -24,13 +24,9 @@ public class RideCreateForm {
 	  private String lieuDepart;
 	  
 	  private String jourDepart;
-	  private String jourArrive;
-	  
 	  private int heureDepart;
-	  private int heureArrive;
 	  
 	  private int minuteD;
-	  private int minuteA;
 	  private Double price;
 	 private String caracteristic;
 	
@@ -85,24 +81,14 @@ public class RideCreateForm {
 	public void setJourDepart(String jourDepart) {
 		this.jourDepart = jourDepart;
 	}
-	public String getJourArrive() {
-		return jourArrive;
-	}
-	public void setJourArrive(String jourArrive) {
-		this.jourArrive = jourArrive;
-	}
+	
 	public int getHeureDepart() {
 		return heureDepart;
 	}
 	public void setHeureDepart(int heureDepart) {
 		this.heureDepart = heureDepart;
 	}
-	public int getHeureArrive() {
-		return heureArrive;
-	}
-	public void setHeureArrive(int heureArrive) {
-		this.heureArrive = heureArrive;
-	}
+	
 
 	public int getMinuteD() {
 		return minuteD;
@@ -110,12 +96,7 @@ public class RideCreateForm {
 	public void setMinuteD(int minuteD) {
 		this.minuteD = minuteD;
 	}
-	public int getMinuteA() {
-		return minuteA;
-	}
-	public void setMinuteA(int minuteA) {
-		this.minuteA = minuteA;
-	}
+	
 	
 
 }

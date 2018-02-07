@@ -4,24 +4,31 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import poe.blablacar.Service.AccountService;
 import poe.blablacar.Service.RideService;
+import poe.blablacar.domain.Account;
 import poe.blablacar.domain.Ride;
-import poe.blablacar.form.AccountCreateForm;
 import poe.blablacar.form.RideCreateForm;
 import poe.blablacar.utils.DateUtil;
 
+@RequestMapping("/ride")
+@Controller
 public class RideController extends WebMvcConfigurerAdapter{
 
 	
@@ -37,21 +44,27 @@ public class RideController extends WebMvcConfigurerAdapter{
 	        registry.addViewController("/results").setViewName("results");
 	    }
 	 
-	    @GetMapping("/")
-	    public String showForm(RideCreateForm rideCreateForm) {
-	        return "form";
+	    @GetMapping
+	    public String showForm(Account account,  RideCreateForm rideCreateForm,  @RequestParam(name = "ride", required = false) String rideId, BindingResult bindingResult , Model model, RedirectAttributes redirectAttributes) {
+	    	  if (rideId != null && !rideId.isEmpty()) {
+	              Ride ride = rideService.get(Long.valueOf(rideId))  ;        
+	              model.addAttribute("ride", ride);
+	          }
+	    	  
+	    	  Iterable<Account> accounts = accountService.accounts();
+	          model.addAttribute("accounts", accounts);
+	          return "ride/accountAddRide";
+
 	    }
 
-	    @PostMapping("/")
-	    public String checkPersonInfo(@Valid RideCreateForm rideCreateForm, BindingResult bindingResult) {
+	    @PostMapping
+	    public String offerARide(@Valid RideCreateForm rideCreateForm, BindingResult bindingResult , Model model, RedirectAttributes redirectAttributes) {
 
 	        if (bindingResult.hasErrors()) {
-	            return "form";
+	        	 System.out.println(bindingResult.getAllErrors());
+	             return "ride/accountAddRide";
 	        }
-	        
-	        if (bindingResult.hasErrors()) {
-	            return "offerARide";
-	        }
+	      
 	        DateFormat   formatter = new SimpleDateFormat("yyyy-MM-dd");
 		      Date date = new Date();
 			try {
@@ -60,42 +73,26 @@ public class RideController extends WebMvcConfigurerAdapter{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 	        Date convertedDateMinutePrecision = DateUtil.convert(date, rideCreateForm.getHeureDepart(), rideCreateForm.getMinuteD());
 	        
-	        rideService.offerARide(convertedDateMinutePrecision, rideCreateForm.getCaracteristic(), rideCreateForm.getTotalPlaces(), rideCreateForm.getLeftPlaces(), rideCreateForm.getLieuDepart(), rideCreateForm.getLieuArrive(), rideCreateForm.getPrice(), rideCreateForm.getAccountId());
+	       Ride ride = rideService.offerARide(convertedDateMinutePrecision, rideCreateForm.getCaracteristic(), rideCreateForm.getTotalPlaces(), rideCreateForm.getLeftPlaces(), rideCreateForm.getLieuDepart(), rideCreateForm.getLieuArrive(), rideCreateForm.getPrice(), rideCreateForm.getAccountId());
 	      
-	        Model.addAttribute("message", "Votre trajet a bien été pris en compte.");
-	        return "offerARide";
+	      //  Model.ad
+	        redirectAttributes.addAttribute("ride", ride.getId());
+	        return "redirect:/ride";
 	    }
 	    
 	    
-	        Ride ride = new Ride();
-	       String jour =  rideCreateForm.getJourDepart();
-	       String jourarrive = rideCreateForm.getJourArrive();
-	       int heureA = rideCreateForm.getHeureArrive();
-	       int heureD = rideCreateForm.getHeureDepart();
-	       int minuteD = rideCreateForm.getMinuteD();
-	       int minuteA = rideCreateForm.getMinuteA();
+	    @GetMapping("/list")
+	    public String list(Model model) {
+	       Iterable<Ride>  rides = rideService.rides();
 	       
-	       
-	       
-	       
-	   ride.setLieuDepart(rideCreateForm.getLieuDepart());
-	   ride.setLieuArrive(rideCreateForm.getJourArrive());
-	   ride.setLeftPlaces(rideCreateForm.getLeftPlaces());
-	   ride.setTotalPlaces(ride.getTotalPlaces());
-	   ride.setPrice(rideCreateForm.getPrice());
-	   ride.setCaracteristic(rideCreateForm.getCaracteristic());
-	   
-	   
-	 
-		
-		
-		  
-		 
-	    
-	       
+	       System.out.println("je suis ");
 
-	        return "redirect:/results";
+	        model.addAttribute("rides", rides);
+	        return "ride/list";
 	    }
+
+	  
 }

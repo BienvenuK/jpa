@@ -33,7 +33,6 @@ public class AccountDto {
 			RideDto rideDto = new RideDto();
 			rideDto.setStartDate(ride.getStartDate());
 			rideDto.setCaracteristic(ride.getCaracteristic());
-			rideDto.setArrivalDate(ride.getArrivalDate());
 			rideDto.setTotalPlaces(ride.getTotalPlaces());
 			rideDto.setLeftPlaces(ride.getLeftPlaces());;
 

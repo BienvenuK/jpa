@@ -44,7 +44,7 @@ public class RideService {
 		return rideDao.exists(idRide);
 	}
 	
-	public void offerARide( Date startDate, String caracteristic, int totalPlaces , int leftPlaces , String lieuDepart, String lieuArrive, Double price, Long driver) {
+	public Ride offerARide( Date startDate, String caracteristic, int totalPlaces , int leftPlaces , String lieuDepart, String lieuArrive, Double price, Long driver) {
 		
 		Ride ride = new Ride();
 		ride.setStartDate(startDate);
@@ -57,6 +57,7 @@ public class RideService {
 		Account account = accountService.get(driver);
 		ride.setDriver(account);
 		rideDao.save(ride);
+		return ride;
 		
 
 	}

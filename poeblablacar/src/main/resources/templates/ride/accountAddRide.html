@@ -1,7 +1,27 @@
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head >
+    <title>Création d'un compte utilisateur - Trajet Facile</title>
+</head>
+
     <body>
-        <form action="#" th:action="@{/}" th:object="${rideCreateForm}" method="post">
+        <form action="#" th:action="@{/ride}" th:object="${rideCreateForm}" method="post">
+           
             <table>
+                <tr>
+                    <td>User:</td>
+                    <td>
+                        <select th:field="*{accountId}">
+                            <option
+                                    th:each="account : ${accounts}"
+                                    th:value="${account.id}"
+                                    th:text="${account.email}"
+                            ></option>
+                        </select>
+                    </td>
+                    <td th:if="${#fields.hasErrors('accountId')}" th:errors="*{accountId}"/>
+                </tr>
                 <tr>
                     <td>Depart :</td>
                     <td><input type="text" th:field="*{ride.lieuDepart}" /></td>
@@ -19,7 +39,7 @@
                 </tr>
                 <tr>
                     <td>Jour de depart</td>
-                    <td><input type="password" th:field="*{jourDepart}" /></td>
+                    <td><input type="date" th:field="*{jourDepart}" /></td>
                     <td th:if="${#fields.hasErrors('jourDepart')}" th:errors="jourDepart">password Error</td>
                 </tr>
                 
@@ -33,17 +53,11 @@
                  
                 <tr>
                     <td>Minute depart</td>
-                    <td><input type="text" th:field="*{minuteDepart}" /></td>
-                    <td th:if="${#fields.hasErrors('minuteDepart')}" th:errors="minuteDepart">password Error</td>
-                </tr>
-                
-                 <tr>
-                    <td>Minute Arrive</td>
-                    <td><input type="text" th:field="*{price}" /></td>
-                    <td th:if="${#fields.hasErrors('price')}" th:errors="price">password Error</td>
+                    <td><input type="text" th:field="*{minuteD}" /></td>
+                    <td th:if="${#fields.hasErrors('minuteD')}" th:errors="minuteD">password Error</td>
                 </tr>
                   <tr>
-                    <td>Account </td>
+                    <td>Prix  </td>
                     <td><input type="number" th:field="*{price}" /></td>
                     <td th:if="${#fields.hasErrors('price')}" th:errors="price">password Error</td>
                 </tr>
@@ -51,6 +65,12 @@
                     <td><button type="submit">Submit</button></td>
                 </tr>
             </table>
+             <div th:if="${ride != null}" class="message-info">
+                Le trajet pour <span th:text="${ride.id}"/> a bien été pris en compte
+            </div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+            </div>
         </form>
     </body>
 </html>

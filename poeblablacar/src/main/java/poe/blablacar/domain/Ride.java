@@ -29,13 +29,12 @@ public class Ride implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Temporal(TemporalType.DATE)
+	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	    @Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
 	//depart - etapes-fin lieu
 	String caracteristic;
-	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-	    @Temporal(TemporalType.TIMESTAMP)
-	private Date arrivalDate;
+	
 	public List<Booking> getBookings() {
 		return bookings;
 	}
@@ -118,12 +117,7 @@ public class Ride implements Serializable{
 	public void setCaracteristic(String caracteristic) {
 		this.caracteristic = caracteristic;
 	}
-	public Date getArrivalDate() {
-		return arrivalDate;
-	}
-	public void setArrivalDate(Date arrivalDate) {
-		this.arrivalDate = arrivalDate;
-	}
+
 	public void setDriver(Account driver) {
 		this.driver = driver;
 	}

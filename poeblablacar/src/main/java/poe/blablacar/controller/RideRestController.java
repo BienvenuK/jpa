@@ -14,14 +14,14 @@ import poe.blablacar.domain.Ride;
 
 
 @RestController
-@RequestMapping("/ride")
+@RequestMapping("/api/ride")
 public class RideRestController {
 	@Autowired
 	RideService rideService;
 	
 	
 	
-	@PostMapping
+	@PostMapping("/api/")
 	public void add(@RequestBody Ride ride) {
 		rideService.add(ride);
 	}
