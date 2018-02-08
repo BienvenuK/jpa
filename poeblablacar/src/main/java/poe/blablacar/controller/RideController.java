@@ -64,6 +64,7 @@ public class RideController extends WebMvcConfigurerAdapter{
 	        	 System.out.println(bindingResult.getAllErrors());
 	             return "ride/accountAddRide";
 	        }
+	        //jkhg
 	      
 	        DateFormat   formatter = new SimpleDateFormat("yyyy-MM-dd");
 		      Date date = new Date();

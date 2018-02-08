@@ -1,14 +1,35 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <title>Création d'un compte utilisateur - Trajet Facile</title>
 </head>
 <body>
-  <form action="#" th:action="@{/ride}" th:object="${bookingCreateForm}" method="post">
+
 <section class="section">
     <div class="container">
+        <form class="form" action="#" th:action="@{/ride/search}" method="get">
+            <div class="field">
+                <div class="control">
+                    <div class="label">
+                        Rechercher
+                    </div>
+                    <input class="input" id="search" name="search" th:value="${search}"
+                           placeholder="Ville de départ ou d'arrivée..."/>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="button is-primary" type="submit" value="Rechercher"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
 
-        <table>
+<section class="section">
+    <div class="container">
+        <table class="table ">
             <tr>
                 <th>Départ</th>
                 <th>Arrivée</th>
@@ -20,24 +41,11 @@
                 <td th:text="${ride.lieuArrive}"/>
                 <td th:text="${ride.totalPlaces}"/>
                 <td th:text="${ride.price}"/>
-                   <td><input type="hidden" th:field="*{ride.id}" /></td>
-                <td > <select th:field="*{accountId}">
-                            <option
-                                    th:each="account : ${accounts}"
-                                    th:value="${account.id}"
-                                    th:text="${account.email}"
-                            ></option>
-                        </select></td>
+                <td><a class="button is-info" th:href="@{/bookings(ride=${ride.id}, account=1)}">je vais là!</a></td>
             </tr>
-             <tr>
-             
-             </tr>
-             
-            
         </table>
     </div>
 </section>
-</form>
 </body>
 
 </html>
