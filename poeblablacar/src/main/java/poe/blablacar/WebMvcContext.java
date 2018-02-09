@@ -1,10 +1,12 @@
+package poe.blablacar;
 
 import poe.blablacar.converter.DateTimeConverter;
 
 import org.springframework.context.annotation.Configuration;
 	import org.springframework.format.FormatterRegistry;
 	import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-	import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 	
 	//@Configuration
 		//@EnableWebMvc
@@ -17,7 +19,11 @@ public class WebMvcContext extends WebMvcConfigurerAdapter{
 	        registry.addConverter(new DateTimeConverter("yyyy-MM-dd'T'HH:mm:ss.SSS"));
 	    }
 	    
-	    //nnn
+	    @Override
+	    public void addViewControllers(ViewControllerRegistry registry) {
+	        registry.addRedirectViewController("/", "/signup");
+
+	    }
 	}
 
 
