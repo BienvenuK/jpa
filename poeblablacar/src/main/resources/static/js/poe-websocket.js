@@ -3,7 +3,7 @@ $(document).ready(function(){
 	
 	console.log('trying');
 	
-	var socket = new SockJS('/poe-wesocket');
+	var socket = new SockJS('/poe-websocket');
 	stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame){
 		console.log('Connect :' + frame);
