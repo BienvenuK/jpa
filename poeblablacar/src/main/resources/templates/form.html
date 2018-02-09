@@ -1,5 +1,20 @@
-<html>
-    <body>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: linksFragment">
+    <title>Création d'un compte utilisateur - Trajet Facile</title>
+</head>
+<body>
+
+<!--Injection du menu-->
+<div th:replace="layout :: navbarFragment">
+</div>
+
+
+<section class="section">
+    <div class="container">
+
+  
         <form action="#" th:action="@{/}" th:object="${accountCreateForm}" method="post">
             <table>
                 <tr>
@@ -34,7 +49,7 @@
                 <tr>
                     <td>Rating :</td>
                     <td><input type="text" th:field="*{rating}" /></td>
-                    <td th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">password Error</td>confirmed
+                    <td th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">password Error</td>
                 </tr>
                  <tr>
                     <td>Confirmer:</td>
@@ -46,5 +61,7 @@
                 </tr>
             </table>
         </form>
+           </div>
+</section>
     </body>
 </html>

@@ -19,7 +19,7 @@ import poe.blablacar.domain.Booking;
 import poe.blablacar.domain.Ride;
 
 
-@RequestMapping("/booking")
+@RequestMapping("/bookings")
 @RestController
 public class BookingRestController {
 	
@@ -67,28 +67,28 @@ public class BookingRestController {
 		return bookingService.get(idBooking);
 	}
 	
-	 @PostMapping("{userId}/{rideId}")
-	    public void save(@PathVariable("userId") Long idAccount, @PathVariable("rideId") Long rideId) {
-	       Account account = accountService.get(idAccount);
-	        Ride ride = rideService.get(rideId);
-
-	        Booking booking = new Booking();
-	        booking.setAccount(account);
-	        booking.setRide(ride);
-	       bookingService.add(booking);
-
-	    }
-	 
-	 @GetMapping("{ride}/{account}")
-	    public String bookARide(@RequestParam(name = "ride") String rideId, @RequestParam(name = "account") String userId, Model model) {
-		 System.out.println("je suis controller book");
-	        if (rideId != null && !rideId.isEmpty()) {
-	            Booking booking = bookingService.bookARide(Long.valueOf(userId), Long.valueOf(rideId));
-	            model.addAttribute("booking", booking);
-	        }
-	        return "ride/accountAddRide";
-	}
-	 
+//	 @PostMapping("{userId}/{rideId}")
+//	    public void save(@PathVariable("userId") Long idAccount, @PathVariable("rideId") Long rideId) {
+//	       Account account = accountService.get(idAccount);
+//	        Ride ride = rideService.get(rideId);
+//
+//	        Booking booking = new Booking();
+//	        booking.setAccount(account);
+//	        booking.setRide(ride);
+//	       bookingService.add(booking);
+//
+//	    }
+//	 
+//	 @GetMapping("{ride}/{account}")
+//	    public String bookARide(@RequestParam(name = "ride") String rideId, @RequestParam(name = "account") String userId, Model model) {
+//		 System.out.println("je suis controller book");
+//	        if (rideId != null && !rideId.isEmpty()) {
+//	            Booking booking = bookingService.bookARide(Long.valueOf(userId), Long.valueOf(rideId));
+//	            model.addAttribute("booking", booking);
+//	        }
+//	        return "ride/accountAddRide";
+//	}
+//	 
 	 
 	
 	 

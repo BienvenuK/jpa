@@ -1,11 +1,22 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head  th:include="head :: linksFragment">
+ <link rel="stylesheet" type="text/css" media="all"
+          href="/css/application.css" th:href="@{/css/application.css}"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/js/poe-websocket.js"></script>
 
     <title>Création d'un compte utilisateur - Trajet Facile</title>
 </head>
 <body>
-
+<div th:replace="layout :: navbarFragment">&nbsp;</div>
 <section class="section">
     <div class="container">
         <form class="form" action="#" th:action="@{/ride/search}" method="get">
@@ -29,7 +40,7 @@
 
 <section class="section">
     <div class="container">
-        <table class="table ">
+        <table class="table " id="rides">
             <tr>
                 <th>Départ</th>
                 <th>Arrivée</th>
@@ -41,7 +52,7 @@
                 <td th:text="${ride.lieuArrive}"/>
                 <td th:text="${ride.totalPlaces}"/>
                 <td th:text="${ride.price}"/>
-                <td><a class="button is-info" th:href="@{/bookings(ride=${ride.id}, account=1)}">je vais là!</a></td>
+                <td><a class="button is-info" th:href="@{/booking(ride=${ride.id}, account=1)}">je vais là!</a></td>
             </tr>
         </table>
     </div>

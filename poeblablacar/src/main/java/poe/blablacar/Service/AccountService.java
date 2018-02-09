@@ -1,16 +1,19 @@
 package poe.blablacar.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import poe.blablacar.dao.AccountDao;
 import poe.blablacar.dao.RideDao;
 import poe.blablacar.domain.Account;
 import poe.blablacar.domain.Ride;
+import org.springframework.security.core.GrantedAuthority;
 
 
 @Service
@@ -18,12 +21,20 @@ public class AccountService {
 	
 	@Autowired
 	AccountDao accountDao;
-	//kkk
 	@Autowired
 	RideService rideService;
 	
+	@Autowired
+    private InMemoryUserDetailsManager inMemoryUserDetailsManager;
+	
 	public void add(Account account) {
 		accountDao.save(account);
+		
+		try {
+            inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(account.getEmail(), account.getPassword(), new ArrayList<GrantedAuthority>()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public Account get(Long idAccount) {

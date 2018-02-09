@@ -3,6 +3,7 @@ package poe.blablacar.Service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import poe.blablacar.dao.RideDao;
 import poe.blablacar.domain.Account;
@@ -16,6 +17,9 @@ public class RideService {
 	
 	@Autowired
 	AccountService accountService;
+	
+	@Autowired
+	private SimpMessagingTemplate template;
 
 
 	public void add(Ride ride) {
@@ -55,8 +59,11 @@ public class RideService {
 		ride.setLieuArrive(lieuArrive);
 		ride.setPrice(price);
 		Account account = accountService.get(driver);
-		ride.setDriver(account);
+		//ride.setDriver(account);
 		rideDao.save(ride);
+		
+		 System.out.println("sending event");
+	        template.convertAndSend("/topic/newRide", ride);
 		return ride;
 		
 
